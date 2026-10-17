@@ -1,0 +1,7 @@
+numpy 
+matplotlib 
+sqlalchemy 
+pyodbc 
+scikit-learn 
+jupyter 
+python-dotenv
