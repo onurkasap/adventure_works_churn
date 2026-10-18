@@ -5,3 +5,4 @@ pyodbc
 scikit-learn 
 jupyter 
 python-dotenv
+pandas
