@@ -10,3 +10,5 @@ totalOrderLines: 121317
 
 4. 
 totalProducts: 504
+
+AdventureWorks müşterilerinin %60,9'u gözlem döneminde yalnızca bir sipariş vermiştir. Tekrar alışveriş yapan müşterilerde ise satın almalar arasındaki medyan süre 138 gündür; ancak dağılım oldukça uzun kuyrukludur ve aralıkların %25'i 411 günden uzundur. Bu nedenle kısa bir sabit inactivity threshold kullanmak müşterileri erken churn olarak sınıflandırabilir.
