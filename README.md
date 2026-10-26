@@ -113,6 +113,13 @@ Local database configuration is handled by the connection helper. Keep credentia
 - Customer structure and product hierarchy are current mappings, not effective-dated histories; monetary comparability is unresolved.
 - Observational patterns and statistical associations do not establish causes or intervention impact.
 
+
+### Power BI Dashboard
+
+[Open the Power BI report (.pbix)](powerbi/AdventureWorks_Customer_Analytics.pbix)
+
+![Executive Overview](assets\dashboard\01_executive_overview.png)
+
 ## Project value
 
 This project demonstrates an auditable analytics workflow: verified source relationships, explicit metric grains and denominators, independent KPI reconciliation, cutoff-aware retention and labels, and carefully bounded statistical/ML interpretation. It leaves clear next steps—resolve monetary definitions, obtain longer consistent history, and validate future prediction against a representative prospective period—without overstating what this dataset can support.

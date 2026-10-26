@@ -4,15 +4,15 @@ AdventureWorks2022 satış geçmişini kullanarak müşterilerin satın alma dav
 
 ## Genel bakış
 
-| Metrik | Gözlenen sonuç | Tanım |
-|---|---:|---|
-| Kayıtlı müşteriler | 19.820 | İncelenen veri kümesindeki müşteri kayıtları |
-| Satın alan müşteriler | 19.119 | Gözlem döneminde en az bir sipariş verenler |
-| Gözlenen siparişi olmayan kayıtlı müşteriler | 701 | Veri kümesinde eşleşen siparişi olmayan kayıtlar |
-| Siparişler / sipariş kalemleri | 31.465 / 121.317 | Sipariş başlıkları / sipariş detay satırları |
-| Tek seferlik / tekrarlı satın alanlar | 11.649 / 7.470 | Tam olarak bir / en az iki gözlenen sipariş verenler |
-| Tüm dönem tekrar satın alma oranı | %39,07 | 19.119 satın alan müşterinin 7.470'i; gözlem dönemiyle sınırlıdır |
-| Ağırlıklı, tam ay bazlı cohort retention | M1 %1,863; M3 %5,387; M6 %5,986; M12 %10,055 | Her oran yalnızca hedef ayı bütünüyle gözlemlenebilen cohort'ları kapsar; ilgili takvim ayındaki etkinliği ölçer |
+| Metrik                                             |                             Gözlenen sonuç | Tanım                                                                                                                      |
+| -------------------------------------------------- | -------------------------------------------: | --------------------------------------------------------------------------------------------------------------------------- |
+| Kayıtlı müşteriler                             |                                       19.820 | İncelenen veri kümesindeki müşteri kayıtları                                                                          |
+| Satın alan müşteriler                           |                                       19.119 | Gözlem döneminde en az bir sipariş verenler                                                                              |
+| Gözlenen siparişi olmayan kayıtlı müşteriler |                                          701 | Veri kümesinde eşleşen siparişi olmayan kayıtlar                                                                       |
+| Siparişler / sipariş kalemleri                   |                             31.465 / 121.317 | Sipariş başlıkları / sipariş detay satırları                                                                         |
+| Tek seferlik / tekrarlı satın alanlar            |                               11.649 / 7.470 | Tam olarak bir / en az iki gözlenen sipariş verenler                                                                      |
+| Tüm dönem tekrar satın alma oranı              |                                       %39,07 | 19.119 satın alan müşterinin 7.470'i; gözlem dönemiyle sınırlıdır                                                  |
+| Ağırlıklı, tam ay bazlı cohort retention      | M1 %1,863; M3 %5,387; M6 %5,986; M12 %10,055 | Her oran yalnızca hedef ayı bütünüyle gözlemlenebilen cohort'ları kapsar; ilgili takvim ayındaki etkinliği ölçer |
 
 Bu doğrulanmış sayılar sipariş başlıkları ve müşteri düzeyindeki popülasyonlara dayanır; sipariş kalemleri ayrı bir veri ayrıntı düzeyinde ele alınır. Veri kümesinde farklı para birimi bağlamları bulunduğu ve ortak dönüşüm yöntemi belirlenmediği için ciro ve ortalama sipariş tutarı (AOV), karşılaştırılabilir KPI'lar olarak sunulmaz.
 
@@ -33,24 +33,24 @@ SQL sorguları kaynak veritabanının şemasını inceler; müşteri, KPI, cohor
 
 ## Analizleri inceleyin
 
-| Analiz | Temel soru | Başlıca sonuç | Rapor bağlantısı |
-|---|---|---|---|
-| Veritabanı keşfi | Müşteri ve sipariş analizini hangi tablolar, anahtarlar ve ilişkiler destekliyor? | Şema ve birleştirme yolları AdventureWorks2022 meta verileriyle kontrol edildi. | [Keşif](reports/01_database_discovery.md) |
-| Veri profilleme ve kalite | Hangi popülasyonlar, veri ayrıntı düzeyleri ve sorunlar analizi sınırlandırıyor? | Müşteri, sipariş başlığı ve kalemleri ayrıştırıldı; sınırlı tarih aralığı ve para birimi bağlamı dikkate alındı. | [Veri kalitesi](reports/02_data_quality_report.md) |
-| Temel KPI'lar | Gözlenen müşteri/sipariş hacmi ve tekrarlı müşteri oranı nedir? | 19.119 satın alan müşteri; %39,07'si en az iki gözlenen sipariş verdi. | [KPI tanımları](reports/03_kpi_definitions.md) · [Temel analiz](reports/03_baseline_analysis.md) |
-| Müşteri davranışı | Müşteriler ne sıklıkla sipariş verdi ve ne zaman geri döndü? | Tekrarlı müşteriler arasında siparişler arası medyan süre 138 gündür; bu betimsel sonuç bir hareketsizlik kuralı değildir. | [Müşteri davranışı](reports/04_customer_behavior.md) |
-| Cohort retention | İlk gözlenen satın alma grubundaki müşterilerin ne kadarı belirli bir sonraki takvim ayında aktiftir? | Ağırlıklı oranlar M1 %1,863, M3 %5,387, M6 %5,986, M12 %10,055; tam takip süresi olmayan gelecek aylar gözlemlenmemiş kabul edilir. | [Cohort retention](reports/05_retention_cohort_analysis.md) |
-| RF segmentasyonu | Son kesim tarihinde yakınlık ve sipariş sıklığına göre müşteriler nasıl gruplanır? | 30 Haziran 2014 itibarıyla altı grup oluşturuldu; parasal değer puanlanmadı. | [RF segmentasyonu](reports/06_rfm_customer_segmentation.md) |
-| Temmuz 2013 yapısal değişimi | Haziran–Temmuz 2013 civarında neler değişti? | Siparişler 719'dan 1.740'a çıktı; zamanlama ve neden konusunda yorum betimsel düzeydedir. | [Yapısal değişim](reports/07_5_july_2013_structural_break.md) |
-| Tarihsel churn tanımı | 365 günlük hareketsizlik penceresi neyi gösterebilir? | Kesim tarihindeki uygunluk ve takip süresi koşullarını içeren gözlenen geri dönmeme göstergesi tanımlandı. | [Tanım analizi](reports/07_churn_definition_analysis.md) |
-| Tarihsel etiketler ve yeniden etkinleşme | Tam gözlemlenebilir iki ayrı 365 günlük takip penceresinde ne oldu? | A_2012 grubunda geri dönmeme sonrasında yeniden etkinleşme yaygındı; B'nin sonraki yılı gözlemlenemiyor. | [Etiket oluşturma](reports/08_churn_label_construction.md) |
-| İstatistiksel testler | Geri dönen ve dönmeyen grupların müşteri özellikleri kesitler arasında değişiyor mu? | İlişkiler dönemlere göre değişiyor; nedensel kanıt sunmuyor. | [İstatistiksel analiz](reports/09_statistical_analysis.md) |
-| ML uygulanabilirliği | Bilgi sızıntısı önlenerek hazırlanan özellikler farklı tarihsel dönemlere genellenebiliyor mu? | Dönemler arası performans güvenilir değildi; daha uzun veri geçmişi ve daha açık iş tanımları gerekli. | [ML uygulanabilirliği](reports/10_ml_feasibility.md) |
-| Power BI hazırlığı | Doğrulanmış SQL çıktıları nasıl modellenip raporlanmalı? | Veri modeli, DAX ölçüleri, içe aktarma rehberi ve dashboard tanımı belgelendi. | [Hazırlık raporu](reports/11_powerbi_preparation.md) |
+| Analiz                                    | Temel soru                                                                                                   | Başlıca sonuç                                                                                                                           | Rapor bağlantısı                                                                               |
+| ----------------------------------------- | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------- |
+| Veritabanı keşfi                        | Müşteri ve sipariş analizini hangi tablolar, anahtarlar ve ilişkiler destekliyor?                        | Şema ve birleştirme yolları AdventureWorks2022 meta verileriyle kontrol edildi.                                                         | [Keşif](reports/01_database_discovery.md)                                                         |
+| Veri profilleme ve kalite                 | Hangi popülasyonlar, veri ayrıntı düzeyleri ve sorunlar analizi sınırlandırıyor?                     | Müşteri, sipariş başlığı ve kalemleri ayrıştırıldı; sınırlı tarih aralığı ve para birimi bağlamı dikkate alındı.     | [Veri kalitesi](reports/02_data_quality_report.md)                                                 |
+| Temel KPI'lar                             | Gözlenen müşteri/sipariş hacmi ve tekrarlı müşteri oranı nedir?                                      | 19.119 satın alan müşteri; %39,07'si en az iki gözlenen sipariş verdi.                                                                | [KPI tanımları](reports/03_kpi_definitions.md) · [Temel analiz](reports/03_baseline_analysis.md) |
+| Müşteri davranışı                    | Müşteriler ne sıklıkla sipariş verdi ve ne zaman geri döndü?                                          | Tekrarlı müşteriler arasında siparişler arası medyan süre 138 gündür; bu betimsel sonuç bir hareketsizlik kuralı değildir.     | [Müşteri davranışı](reports/04_customer_behavior.md)                                          |
+| Cohort retention                          | İlk gözlenen satın alma grubundaki müşterilerin ne kadarı belirli bir sonraki takvim ayında aktiftir? | Ağırlıklı oranlar M1 %1,863, M3 %5,387, M6 %5,986, M12 %10,055; tam takip süresi olmayan gelecek aylar gözlemlenmemiş kabul edilir. | [Cohort retention](reports/05_retention_cohort_analysis.md)                                        |
+| RF segmentasyonu                          | Son kesim tarihinde yakınlık ve sipariş sıklığına göre müşteriler nasıl gruplanır?               | 30 Haziran 2014 itibarıyla altı grup oluşturuldu; parasal değer puanlanmadı.                                                          | [RF segmentasyonu](reports/06_rfm_customer_segmentation.md)                                        |
+| Temmuz 2013 yapısal değişimi           | Haziran–Temmuz 2013 civarında neler değişti?                                                             | Siparişler 719'dan 1.740'a çıktı; zamanlama ve neden konusunda yorum betimsel düzeydedir.                                             | [Yapısal değişim](reports/07_5_july_2013_structural_break.md)                                   |
+| Tarihsel churn tanımı                   | 365 günlük hareketsizlik penceresi neyi gösterebilir?                                                     | Kesim tarihindeki uygunluk ve takip süresi koşullarını içeren gözlenen geri dönmeme göstergesi tanımlandı.                       | [Tanım analizi](reports/07_churn_definition_analysis.md)                                          |
+| Tarihsel etiketler ve yeniden etkinleşme | Tam gözlemlenebilir iki ayrı 365 günlük takip penceresinde ne oldu?                                      | A_2012 grubunda geri dönmeme sonrasında yeniden etkinleşme yaygındı; B'nin sonraki yılı gözlemlenemiyor.                           | [Etiket oluşturma](reports/08_churn_label_construction.md)                                        |
+| İstatistiksel testler                    | Geri dönen ve dönmeyen grupların müşteri özellikleri kesitler arasında değişiyor mu?                | İlişkiler dönemlere göre değişiyor; nedensel kanıt sunmuyor.                                                                        | [İstatistiksel analiz](reports/09_statistical_analysis.md)                                        |
+| ML uygulanabilirliği                     | Bilgi sızıntısı önlenerek hazırlanan özellikler farklı tarihsel dönemlere genellenebiliyor mu?      | Dönemler arası performans güvenilir değildi; daha uzun veri geçmişi ve daha açık iş tanımları gerekli.                          | [ML uygulanabilirliği](reports/10_ml_feasibility.md)                                              |
+| Power BI hazırlığı                    | Doğrulanmış SQL çıktıları nasıl modellenip raporlanmalı?                                            | Veri modeli, DAX ölçüleri, içe aktarma rehberi ve dashboard tanımı belgelendi.                                                       | [Hazırlık raporu](reports/11_powerbi_preparation.md)                                             |
 
 ### Teknik uygulama
 
-- **SQL:** [şema keşfi](sql/01_exploration/01_database_structure.sql), [veri kalitesi](sql/02_data_quality/01_data_quality_checks.sql), [temel KPI'lar](sql/03_kpi/01_baseline_kpis.sql), [müşteri davranışı](sql/04_customer_analysis/01_customer_behavior.sql), [cohort'lar](sql/05_retention/02_cohort_retention.sql), [RF puanlama](sql/06_rfm/03_rf_scoring.sql), [tarihsel etiketler](sql/08_churn_labels/06_churn_labels.sql), [istatistiksel veri kümesi](sql/09_statistics/01_statistical_dataset.sql) ve [Power BI doğrulama/model veri çıkarımları](sql/11_powerbi/).
+- **SQL:** [şema keşfi](sql/01_exploration/01_database_structure.sql), [veri kalitesi](sql/02_data_quality/01_data_quality_checks.sql), [temel KPI&#39;lar](sql/03_kpi/01_baseline_kpis.sql), [müşteri davranışı](sql/04_customer_analysis/01_customer_behavior.sql), [cohort&#39;lar](sql/05_retention/02_cohort_retention.sql), [RF puanlama](sql/06_rfm/03_rf_scoring.sql), [tarihsel etiketler](sql/08_churn_labels/06_churn_labels.sql), [istatistiksel veri kümesi](sql/09_statistics/01_statistical_dataset.sql) ve [Power BI doğrulama/model veri çıkarımları](sql/11_powerbi/).
 - **Python:** [istatistiksel analiz](src/analysis/churn_statistics.py), [ML uygulanabilirlik iş akışı](src/ml/churn_feasibility.py), [özellik hazırlama hattı](src/ml/feature_pipeline.py) ve [veritabanı bağlantı yardımcısı](src/database/connection.py).
 - **Power BI dokümantasyonu:** [anlamsal model](powerbi/data_model.md), [DAX ölçüleri](powerbi/dax_measures.md), [dashboard tanımı](powerbi/dashboard_specification.md) ve [içe aktarma rehberi](powerbi/import_guide.md).
 
@@ -111,6 +111,13 @@ Yerel veritabanı yapılandırması bağlantı yardımcısı üzerinden yürüt�
 - ML değerlendirmesi tarihseldir ve dönemler arası genelleme güvenilir olmamıştır. Model, kullanıma hazır churn sistemi değil uygulanabilirlik çalışmasıdır.
 - Müşteri yapısı ve ürün hiyerarşisi tarihsel geçerlilik aralıklarıyla tutulan kayıtlar yerine mevcut eşleştirmeleri kullanır; parasal karşılaştırılabilirlik çözülmemiştir.
 - Gözlemsel örüntüler ve istatistiksel ilişkiler nedenleri ya da müdahale etkilerini kanıtlamaz.
+
+
+### Power BI Dashboard
+
+[Open the Power BI report (.pbix)](powerbi/AdventureWorks_Customer_Analytics.pbix)
+
+![Executive Overview](assets\dashboard\01_executive_overview.png)
 
 ## Projenin değeri
 
