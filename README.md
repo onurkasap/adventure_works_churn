@@ -1,18 +1,20 @@
-﻿# AdventureWorks | Customer Retention & Churn Analytics
+﻿[Türkçe README](README_TR.md)
+
+# AdventureWorks | Customer Retention & Churn Analytics
 
 An end-to-end analytics project using AdventureWorks2022 sales history to examine customer purchasing, repeat behavior, retention, and historical non-return. The workflow moves from SQL Server schema discovery and data-quality checks to validated SQL metrics, Python statistical and machine-learning feasibility analysis, and Power BI model/dashboard specifications. The observed order window is **2011-05-31 to 2014-06-30**. Findings are descriptive: the project distinguishes observed behavior from assumptions and does not treat a historical non-return label as confirmed permanent churn.
 
 ## At a glance
 
-| Measure | Observed result | Definition |
-|---|---:|---|
-| Registered customers | 19,820 | Customer records in the observed extract |
-| Purchasing customers | 19,119 | At least one observed order |
-| Registered customers without observed orders | 701 | Registered records with no linked order in the extract |
-| Orders / order lines | 31,465 / 121,317 | Header orders / detail rows |
-| One-time / repeat purchasers | 11,649 / 7,470 | Exactly one / at least two observed orders |
-| Full-history repeat purchasing rate | 39.07% | 7,470 of 19,119 purchasers; bounded by this observation window |
-| Weighted exact-month cohort retention | M1 1.863%; M3 5.387%; M6 5.986%; M12 10.055% | Each rate uses only cohorts with that complete target month observable; activity in that exact calendar month |
+| Measure                                      |                              Observed result | Definition                                                                                                    |
+| -------------------------------------------- | -------------------------------------------: | ------------------------------------------------------------------------------------------------------------- |
+| Registered customers                         |                                       19,820 | Customer records in the observed extract                                                                      |
+| Purchasing customers                         |                                       19,119 | At least one observed order                                                                                   |
+| Registered customers without observed orders |                                          701 | Registered records with no linked order in the extract                                                        |
+| Orders / order lines                         |                             31,465 / 121,317 | Header orders / detail rows                                                                                   |
+| One-time / repeat purchasers                 |                               11,649 / 7,470 | Exactly one / at least two observed orders                                                                    |
+| Full-history repeat purchasing rate          |                                       39.07% | 7,470 of 19,119 purchasers; bounded by this observation window                                                |
+| Weighted exact-month cohort retention        | M1 1.863%; M3 5.387%; M6 5.986%; M12 10.055% | Each rate uses only cohorts with that complete target month observable; activity in that exact calendar month |
 
 These validated counts are based on order headers and customer-level populations; order lines are kept at their own grain. Revenue and AOV are not presented as comparable KPIs because the extract contains mixed currency contexts and no conversion convention was selected.
 
@@ -33,20 +35,20 @@ SQL queries inspect the source schema and build reproducible customer, KPI, coho
 
 ## Explore the analyses
 
-| Analysis | Main question | Key takeaway | Read the report |
-|---|---|---|---|
-| Database discovery | Which tables, keys, and relationships support customer/order analysis? | Schema and join paths were checked against AdventureWorks2022 metadata. | [Discovery](reports/01_database_discovery.md) |
-| Data profiling and quality | What populations, grains, and data issues constrain analysis? | Distinguish customers, order headers, and lines; finite history and currency context matter. | [Data quality](reports/02_data_quality_report.md) |
-| Baseline KPIs | How large is the observed customer/order base and repeat-purchaser share? | 19,119 purchasers; 39.07% had at least two observed orders. | [KPI definitions](reports/03_kpi_definitions.md) · [Baseline analysis](reports/03_baseline_analysis.md) |
-| Customer behavior | How frequently did customers order, and when did they return? | Median interpurchase gap among repeat buyers was 138 days; this is descriptive, not an inactivity rule. | [Customer behavior](reports/04_customer_behavior.md) |
-| Cohort retention | What share of each first-observed purchase cohort was active in an exact later calendar month? | Weighted rates: M1 1.863%, M3 5.387%, M6 5.986%, M12 10.055%; later cells without full follow-up are unobserved. | [Cohort retention](reports/05_retention_cohort_analysis.md) |
-| RF segmentation | How do customers group by recency and order frequency at the final cutoff? | Six groups as of 2014-06-30; monetary value was not scored. | [RF segmentation](reports/06_rfm_customer_segmentation.md) |
-| July 2013 structural break | What shifted around June–July 2013? | Orders rose from 719 to 1,740; timing and cause remain descriptive questions. | [Structural break](reports/07_5_july_2013_structural_break.md) |
-| Historical churn definition | What can a 365-day inactivity window establish? | Defines an observed non-return proxy with cutoff eligibility and follow-up constraints. | [Definition analysis](reports/07_churn_definition_analysis.md) |
-| Historical labels and reactivation | What happened in the two fully observed 365-day outcome windows? | A_2012 non-return was often followed by later reactivation; B has no later observable year. | [Label construction](reports/08_churn_label_construction.md) |
-| Statistical testing | Do customer characteristics differ across returned/non-return groups and snapshots? | Associations vary across regimes and are not causal evidence. | [Statistical analysis](reports/09_statistical_analysis.md) |
-| ML feasibility | Do cutoff-safe features generalize across historical regimes? | Cross-regime performance was unreliable; more history and clearer definitions are needed. | [ML feasibility](reports/10_ml_feasibility.md) |
-| Power BI preparation | How should validated SQL outputs be modeled and reported? | Model, DAX measures, import guidance, and dashboard specification are documented. | [Preparation report](reports/11_powerbi_preparation.md) |
+| Analysis                           | Main question                                                                                  | Key takeaway                                                                                                     | Read the report                                                                                        |
+| ---------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
+| Database discovery                 | Which tables, keys, and relationships support customer/order analysis?                         | Schema and join paths were checked against AdventureWorks2022 metadata.                                          | [Discovery](reports/01_database_discovery.md)                                                           |
+| Data profiling and quality         | What populations, grains, and data issues constrain analysis?                                  | Distinguish customers, order headers, and lines; finite history and currency context matter.                     | [Data quality](reports/02_data_quality_report.md)                                                       |
+| Baseline KPIs                      | How large is the observed customer/order base and repeat-purchaser share?                      | 19,119 purchasers; 39.07% had at least two observed orders.                                                      | [KPI definitions](reports/03_kpi_definitions.md) · [Baseline analysis](reports/03_baseline_analysis.md) |
+| Customer behavior                  | How frequently did customers order, and when did they return?                                  | Median interpurchase gap among repeat buyers was 138 days; this is descriptive, not an inactivity rule.          | [Customer behavior](reports/04_customer_behavior.md)                                                    |
+| Cohort retention                   | What share of each first-observed purchase cohort was active in an exact later calendar month? | Weighted rates: M1 1.863%, M3 5.387%, M6 5.986%, M12 10.055%; later cells without full follow-up are unobserved. | [Cohort retention](reports/05_retention_cohort_analysis.md)                                             |
+| RF segmentation                    | How do customers group by recency and order frequency at the final cutoff?                     | Six groups as of 2014-06-30; monetary value was not scored.                                                      | [RF segmentation](reports/06_rfm_customer_segmentation.md)                                              |
+| July 2013 structural break         | What shifted around June–July 2013?                                                           | Orders rose from 719 to 1,740; timing and cause remain descriptive questions.                                    | [Structural break](reports/07_5_july_2013_structural_break.md)                                          |
+| Historical churn definition        | What can a 365-day inactivity window establish?                                                | Defines an observed non-return proxy with cutoff eligibility and follow-up constraints.                          | [Definition analysis](reports/07_churn_definition_analysis.md)                                          |
+| Historical labels and reactivation | What happened in the two fully observed 365-day outcome windows?                               | A_2012 non-return was often followed by later reactivation; B has no later observable year.                      | [Label construction](reports/08_churn_label_construction.md)                                            |
+| Statistical testing                | Do customer characteristics differ across returned/non-return groups and snapshots?            | Associations vary across regimes and are not causal evidence.                                                    | [Statistical analysis](reports/09_statistical_analysis.md)                                              |
+| ML feasibility                     | Do cutoff-safe features generalize across historical regimes?                                  | Cross-regime performance was unreliable; more history and clearer definitions are needed.                        | [ML feasibility](reports/10_ml_feasibility.md)                                                          |
+| Power BI preparation               | How should validated SQL outputs be modeled and reported?                                      | Model, DAX measures, import guidance, and dashboard specification are documented.                                | [Preparation report](reports/11_powerbi_preparation.md)                                                 |
 
 ### Technical implementation
 
